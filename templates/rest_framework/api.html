@@ -1,0 +1,22 @@
+{% extends "rest_framework/base.html" %}
+
+{% load i18n %}
+
+{% block title %}
+    API
+{% endblock %}
+
+
+{% block branding %}
+    <a class="navbar-brand" href="#">
+        {% trans "Daniel Pawlak's Rest API" %}
+    </a>
+{% endblock %}
+
+{% block userlinks %}
+    <ul class='nav navbar-nav pull-right'>
+        <li><a href="{% url 'title_list' %}">Title List<a/></li>
+    </ul>
+{% endblock %}
+
+

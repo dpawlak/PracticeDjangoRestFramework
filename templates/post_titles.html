@@ -1,0 +1,36 @@
+{% load bootstrap4 %}
+
+
+<html>
+
+    <body>
+
+        <div class='container'>
+
+            <div class='row'>
+
+                <div class='col sm-3'>
+                    <h1>Post Titles</h1>
+                    <ul>
+                        {% for post in posts %}
+                        <li>{{ post.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class='col sm-3'>
+                    <h1>Post Descriptions</h1>
+                    <ul>
+                        {% for post in posts %}
+                        <li>{{ post.description }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
