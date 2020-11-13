@@ -5,9 +5,11 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = (
-            'title', 
+            'patient_name', 
             'description',
-            'owner',
+            'doctor',
+            'department',
+            'team',
             'timestamp',
             'id'
         )       

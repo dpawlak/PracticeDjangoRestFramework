@@ -7,9 +7,9 @@
  <div class="col-md-1 col-xs-1 col-sm-1">
     </div>
  <div class="col-md-8 col-xs-8 col-sm-8">
-  <p class="h2">
-   {{post.title}}
-  </p>
+  <p>Patient: {{post.patient_name}} </p>
+  <p>Doctor: {{post.doctor}}</p>
+
     </div>
  <div class="col-md-1 col-xs-1 col-sm-1">
   <a href="{% url 'edit' post.pk %}">
@@ -29,10 +29,19 @@
 </div>
 <div class="row">
  <div class="col-md-1 col-xs-1 col-sm-1"></div>
+
+
+
  <div class="col-md-10 col-xs-10 col-sm-10">
- {{post.description}}
+ <p>Description: {{post.description}}</p>
  </div>
+
+
+
  <div class="col-md-1 col-xs-1 col-sm-1"></div>
 </div>
 </div>
+
+
+
 {% endblock %}
