@@ -8,9 +8,6 @@ class PostSerializer(serializers.ModelSerializer):
             'patient_name', 
             'description',
             'doctor',
-            'department',
-            'team',
-            'timestamp',
-            'id'
+            'timestamp'
         )       
 
