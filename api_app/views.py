@@ -13,13 +13,14 @@ from rest_framework.decorators import api_view
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import viewsets          
 from django.views.generic import ListView, DetailView
+from rest_framework.renderers import JSONRenderer
 
 # App imports
 from .serializers import PostSerializer
-from .models import Post
-from .forms import PostForm
+from .models import Post, DoctorProfile
+from .forms import PostForm, DoctorProfileForm
 
-# CRUD app views
+
 
 #home view for posts. Posts are displayed in a list
 class IndexView(ListView):
@@ -62,13 +63,69 @@ def delete(request, pk, template_name='confirm_delete.html'):
         return redirect('index')
     return render(request, template_name, {'object':post})
 
+#Count number of appointments
+class AppointmentCountView(APIView):
+    """
+    A view that returns the count of appointments
+    """
+    renderer_classes = (JSONRenderer, )
+
+    def get(self, request):
+        appointment_count = Post.objects.count()
+        content = {'appointment_count': appointment_count}
+        return Response(content)
+        
 
 
+#---------------------------------------#
+# -------Doctor Profile Views ----------#
+#---------------------------------------#
+
+# Doctor List View
+class DoctorIndexView(ListView):
+    template_name='doctor_index.html'
+    context_object_name = 'doctor_list'
+
+    def get_queryset(self):
+        return DoctorProfile.objects.all()
+    
+
+# Doctor Detail view (view doctor detail)
+
+class DoctorDetailView(DetailView):
+ model=DoctorProfile
+ template_name = 'doctor-detail.html'
 
 
+#New Doctor view (Create new post)
 
+def doctorview(request):
+ if request.method == 'POST':
+  form = DoctorProfileForm(request.POST)
+  if form.is_valid():
+   form.save()
+  return redirect('index')
+ form = DoctorProfileForm()
+ return render(request,'doctor.html',{'form': form})
 
+#Edit a Doctor
 
+def doctoredit(request, pk, template_name='doctoredit.html'):
+    doctor= get_object_or_404(Doctor, pk=pk)
+    form = DoctorProfileForm(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+    return render(request, template_name, {'form':form})
+
+#Delete post
+
+def doctordelete(request, pk, template_name='doctor_confirm_delete.html'):
+    doctor= get_object_or_404(Doctor, pk=pk)    
+    if request.method=='POST':
+        post.delete()
+        return redirect('index')
+    return render(request, template_name, {'object':doctor})
 
 
 
