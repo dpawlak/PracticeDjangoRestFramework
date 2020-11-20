@@ -23,14 +23,17 @@ from .forms import PostForm, DoctorProfileForm
 
 
 #home view for posts. Posts are displayed in a list
-class IndexView(ListView):
+class IndexView(ListView, APIView):
     template_name='index.html'
     context_object_name = 'post_list'
-
+    
+    
     def get_queryset(self):
         return Post.objects.all()
     
-
+   
+        
+        
 #Detail view (view post detail)
 class PostDetailView(DetailView):
  model=Post
@@ -62,19 +65,6 @@ def delete(request, pk, template_name='confirm_delete.html'):
         post.delete()
         return redirect('index')
     return render(request, template_name, {'object':post})
-
-#Count number of appointments
-class AppointmentCountView(APIView):
-    """
-    A view that returns the count of appointments
-    """
-    renderer_classes = (JSONRenderer, )
-
-    def get(self, request):
-        appointment_count = Post.objects.count()
-        content = {'appointment_count': appointment_count}
-        return Response(content)
-        
 
 
 #---------------------------------------#

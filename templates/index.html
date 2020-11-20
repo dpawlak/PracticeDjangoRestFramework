@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
 
   {# Title/Header #}
@@ -12,6 +11,10 @@
     <div class="col-md-1 col-xs-1 col-sm-1"></div>
   </div>
 
+  {# Show number of appointments left #}
+
+      <p>Appointments Remaining: {{post_list.count}}</p>
+    
   {# Green button to add post #}
   <div class="row">
     <div class="col-md-2 col-xs-1 col-sm-1">
@@ -25,6 +28,7 @@
   </div>
 
   <br/>
+
   {# Post Display #}
   {% for post in post_list %}
     <div class="row"> 
@@ -72,14 +76,11 @@
       </div>
       <div class="col-md-1 col-xs-1 col-sm-1"></div>
     </div>
+
+
+    
   {% endfor %}
 
-  <div>
-    <h1>Doctors</h1>
-    
-
-
-  </div>
 
 
 

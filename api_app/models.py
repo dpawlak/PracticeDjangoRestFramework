@@ -3,7 +3,6 @@ from django.db import models
 
 User = get_user_model()
 
-
 class Post(models.Model):
     SHIRT_SIZES = (
         ('A', 'Building A'),
@@ -16,12 +15,14 @@ class Post(models.Model):
     doctor = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now=True)
     building = models.CharField(max_length=1, choices=SHIRT_SIZES)
+    
 
     def __str__(self):
         return self.last_name
-
-
-
+    
+    def total_appointments(self):
+        return Post.objects.count()
+  
 class DoctorProfile(models.Model):
 
     doctor_first_name = models.CharField(max_length=100)
@@ -31,4 +32,4 @@ class DoctorProfile(models.Model):
     def __str__(self):
         return self.doctor_last_name
 
-        
+            
