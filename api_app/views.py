@@ -16,8 +16,8 @@ from django.views.generic import ListView, DetailView
 from rest_framework.renderers import JSONRenderer
 
 # App imports
-from .serializers import PostSerializer
-from .models import Post, DoctorProfile
+from .serializers import PostSerializer, TagSerializer
+from .models import Post, DoctorProfile, Tag
 from .forms import PostForm, DoctorProfileForm
 
 
@@ -30,10 +30,7 @@ class IndexView(ListView, APIView):
     
     def get_queryset(self):
         return Post.objects.all()
-    
-   
-        
-        
+      
 #Detail view (view post detail)
 class PostDetailView(DetailView):
  model=Post
@@ -68,7 +65,7 @@ def delete(request, pk, template_name='confirm_delete.html'):
 
 
 #---------------------------------------#
-# -------Doctor Profile Views ----------#
+# -------Doctor Profile Views-----------#
 #---------------------------------------#
 
 # Doctor List View

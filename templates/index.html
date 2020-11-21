@@ -1,81 +1,76 @@
 {% extends 'base.html' %}
 {% block content %}
-
+<div class='container'>
   {# Title/Header #}
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-1 col-xs-1 col-sm-1"></div>
-      <div  class="col-md-10 col-xs-10 col-sm-10">
-      <h3 class="round3" style="text-align:center;">Appointments</h3>
-    </div>
-    <div class="col-md-1 col-xs-1 col-sm-1"></div>
-  </div>
-
+  
+  <h3 class="round3" style="text-align:center;">Appointments</h3>
+  
   {# Show number of appointments left #}
 
-      <p>Appointments Remaining: {{post_list.count}}</p>
+  <p>Appointments Remaining: {{post_list.count}}</p>
     
   {# Green button to add post #}
-  <div class="row">
-    <div class="col-md-2 col-xs-1 col-sm-1">
-      <br/>
-      <a href="{% url 'post' %}">
-      <button type="button" class="btn btn-success">
-        <span class="glyphicon glyphicon-plus"></span>
-      </button>
-      </a>
-    </div>
-  </div>
+
+  <a href="{% url 'post' %}">
+    <button type="button" class="btn btn-success">
+      <span class="glyphicon glyphicon-plus"></span>
+    </button>
+  </a>
 
   <br/>
 
   {# Post Display #}
   {% for post in post_list %}
     <div class="row"> 
-      <div class="col-md-1 col-xs-1 col-sm-1"></div> 
-      <div class="col-md-7 col-xs-7 col-sm-7">
-        <ul class="list-group">
-          <li class="list-group-item ">
-            <p>Patient Name:</p>
+      <div class='col-md-8'>
+        <li class="list-group-item ">
+          <p>Patient Name:</p>
             <a href="{% url 'detail' post.pk %}">{{ post.first_name }} {{ post.last_name }}</a>  
             <br/>
             <br/>
             <br/>
             <p>Doctor Name:</p>
-            <p>{{ post.doctor }}</p>
-          </li> 
-        </ul>
-        <br>
-      </div>
+          <p>{{ post.doctor }}</p>
+          <p>Symptoms: {{post.tags.all}}</p>
 
-      {# Post Detail Button #}
-      <div class="col-md-1 col-xs-1 col-sm-1">
-        <a href="{% url 'detail' post.pk %}">
-          <button type="button" class="btn btn-info">
-            <span class="glyphicon glyphicon-open"></span>
-          </button>
-        </a>
-      </div>
+          <div class='buttons' style="display:inline-flex">
+            {# Post Detail Button #}
+            <div>
+              <a href="{% url 'detail' post.pk %}">
+                <button type="button" class="btn btn-info">
+                  <span class="glyphicon glyphicon-open"></span>
+                </button>
+              </a>
+            </div>
 
-      {# Post Edit Button #}
-      <div class="col-md-1">
-        <a href="{% url 'edit' post.pk %}">
-        <button type="button" class="btn btn-info">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>
-        </a>
-      </div>
+            {# Post Edit Button #}
+            <div>
+              <a href="{% url 'edit' post.pk %}">
+              <button type="button" class="btn btn-info">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </button>
+              </a>
+            </div>
 
-      {# Post Delete Button #}
-      <div class="col-md-1">
-        <a href="{% url 'delete' post.pk %}">
-        <button type="button" class="btn btn-danger">
-          <span class="glyphicon glyphicon-trash"></span>
-        </button>
-        </a>
-      </div>
-      <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            {# Post Delete Button #}
+            <div>
+              <a href="{% url 'delete' post.pk %}">
+              <button type="button" class="btn btn-danger">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+
+        </li> 
+      </ul>
+      <br>
     </div>
+
+      
 
 
     
@@ -84,5 +79,6 @@
 
 
 
+  </div>
   </div>
 {% endblock %}

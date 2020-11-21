@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from . models import Post, DoctorProfile
+from . models import Post, DoctorProfile, Tag
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,7 +10,8 @@ class PostSerializer(serializers.ModelSerializer):
             'description',
             'doctor',
             'building',
-            'timestamp'
+            'timestamp',
+            'tags'
         )       
 
 class DoctorProfileSerializer(serializers.ModelSerializer):
@@ -22,3 +23,9 @@ class DoctorProfileSerializer(serializers.ModelSerializer):
             'doctor_summary'
         )
 
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag 
+        fields = (
+            'name',
+        )
