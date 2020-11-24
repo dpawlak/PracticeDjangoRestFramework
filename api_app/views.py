@@ -1,6 +1,8 @@
 # Django imports
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Count
+from django import template
 
 # Third party imports 
 from rest_framework import mixins
@@ -14,11 +16,12 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import viewsets          
 from django.views.generic import ListView, DetailView
 from rest_framework.renderers import JSONRenderer
-
+from .filters import PostFilter
 # App imports
 from .serializers import PostSerializer, TagSerializer
 from .models import Post, DoctorProfile, Tag
 from .forms import PostForm, DoctorProfileForm
+from django.template.defaultfilters import stringfilter
 
 
 
@@ -27,10 +30,10 @@ class IndexView(ListView, APIView):
     template_name='index.html'
     context_object_name = 'post_list'
     
-    
     def get_queryset(self):
         return Post.objects.all()
-      
+
+
 #Detail view (view post detail)
 class PostDetailView(DetailView):
  model=Post

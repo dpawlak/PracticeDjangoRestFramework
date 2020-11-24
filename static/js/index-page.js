@@ -1,1 +1,2 @@
-document.getElementById("test-dom").innerHTML = "Hello Daniel";
+document.getElementById("test-dom").innerHTML = "Appoinments";
+

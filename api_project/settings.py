@@ -6,7 +6,6 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'api_project/templates')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -20,7 +19,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'bootstrap4',
     'django.contrib.admin',
@@ -33,7 +31,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'api_app',
-    'widget_tweaks'
+    'widget_tweaks',
     
 ]
 
@@ -60,7 +58,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'api_app.custom_context.counter',
             ],
+            
         },
     },
 ]

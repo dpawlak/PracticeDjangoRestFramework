@@ -11,8 +11,14 @@
   
   {# Show number of appointments left #}
 
-  <p>Appointments Remaining: {{post_list.count}}</p>
-    
+  <p>Appointments Total: {{post_list.count}}</p>
+  <p>Traumas Remaining: 
+      
+  {{trauma_count}}
+  
+
+</p>
+
   {# Green button to add post #}
 
   <a href="{% url 'post' %}">
@@ -35,8 +41,11 @@
             <br/>
             <p>Doctor Name:</p>
           <p>{{ post.doctor }}</p>
-          <p>Symptoms: {{post.tags.all}}</p>
-
+          <p id='post-tags'>Symptoms: 
+            {% for tag in post.tags.all %}
+            {{tag}}
+            {% endfor %}  
+          </p>
           <div class='buttons' style="display:inline-flex">
             {# Post Detail Button #}
             <div>
