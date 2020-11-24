@@ -58,7 +58,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'api_app.custom_context.counter',
+                'api_app.custom_context.trauma_counter',
+                'api_app.custom_context.pediatric_counter',
+                'api_app.custom_context.optometry_counter',
+                'api_app.custom_context.nuerology_counter',
+                'api_app.custom_context.psychiatry_counter',
             ],
             
         },
