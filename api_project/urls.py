@@ -10,7 +10,7 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('admin/', admin.site.urls),
     path('', include('api_app.urls')),
-    path('prescriptions', include('prescriptions.urls')),
+    path('prescriptions/', include('prescriptions.urls')),
     path('retrieve/<int:pk>', RetrieveView.as_view(), name='retrieve'),
     path('destroy/<pk>', DestroyView.as_view(), name='destroy'),
     path('edit/<pk>', RetrieveUpdateDestroyView.as_view(), name='edit'),

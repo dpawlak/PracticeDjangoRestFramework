@@ -17,11 +17,11 @@ from rest_framework import viewsets
 from django.views.generic import ListView, DetailView
 from rest_framework.renderers import JSONRenderer
 from .filters import PostFilter
+
 # App imports
 from .serializers import PostSerializer, TagSerializer
 from .models import Post, DoctorProfile, Tag
 from .forms import PostForm, DoctorProfileForm
-from django.template.defaultfilters import stringfilter
 
 
 

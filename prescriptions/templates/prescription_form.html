@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<h1>Prescriptions form</h1>
+
+<form method="post" novalidate>
+
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="btn btn-primary">post</button>
+
+</form>
+
+
+
+
+{% endblock %}

@@ -20,6 +20,7 @@ from rest_framework.renderers import JSONRenderer
 
 # App imports
 from .models import Prescriptions
+from .forms import PrescriptionsForm
 
 class PrescriptionsView(ListView, APIView):
     template_name='prescriptions.html'
@@ -36,4 +37,4 @@ def prescriptionsView(request):
    form.save()
   return redirect('prescriptions')
  form = PrescriptionsForm()
- return render(request,'prescriptions.html',{'form': form})
+ return render(request,'prescription_form.html',{'form': form})
