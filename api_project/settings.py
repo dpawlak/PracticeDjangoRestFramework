@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'api_app',
+    'prescriptions',
     'widget_tweaks',
     
 ]
