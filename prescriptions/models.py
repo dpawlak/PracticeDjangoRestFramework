@@ -17,4 +17,4 @@ class Prescriptions(models.Model):
     refills = models.IntegerField()
 
     def __str__(self):
-        return self.patient
+        return self.medication

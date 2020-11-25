@@ -27,3 +27,13 @@ class PrescriptionsView(ListView, APIView):
     
     def get_queryset(self):
         return Prescriptions.objects.all()
+
+#New post view (Create new post)
+def prescriptionsView(request):
+ if request.method == 'POST':
+  form = PrescriptionsForm(request.POST)
+  if form.is_valid():
+   form.save()
+  return redirect('prescriptions')
+ form = PrescriptionsForm()
+ return render(request,'prescriptions.html',{'form': form})
