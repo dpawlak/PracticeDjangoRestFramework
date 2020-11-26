@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Count
 from django import template
-
+ 
 # Third party imports 
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
@@ -36,8 +36,8 @@ class IndexView(ListView, APIView):
 
 #Detail view (view post detail)
 class PostDetailView(DetailView):
- model=Post
- template_name = 'post-detail.html'
+    model=Post
+    template_name = 'post-detail.html'
 
 #New post view (Create new post)
 def postview(request):

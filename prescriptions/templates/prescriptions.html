@@ -3,18 +3,48 @@
 {% load static %}
 
 <h1>Welcome to the prescriptions page</h1>
+
+
 <a href="{% url 'prescriptions_form' %}">
     <button type="button" class="btn btn-success">
       <span class="glyphicon glyphicon-plus"></span>
     </button>
   </a>
+  <hr/>
 {% for prescription in prescriptions_list%}
     <p>Last Name: {{prescription.patient}}</p>
     <p>Medication: {{prescription.medication}}</p>
     <p>Refills: {{prescription.refills}}</p>
-    <hr/>
+   
+
+    {# prescription Edit Button #}
+    <div>
+      <a href="{% url 'prescription_edit' prescription.pk %}">
+        <button type="button" class="btn btn-info">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+      </a>
+    </div>
+
+    {# Post Detail Button #}
+      <div>
+        <a href="{% url 'prescription_detail' prescription.pk %}">
+          <button type="button" class="btn btn-info">
+            <span class="glyphicon glyphicon-open"></span>
+          </button>
+        </a>
+      </div>
+
+
+
+
+
+ <hr/>
+
+
+
 {% endfor %}
 
-
+ 
 
 {% endblock %}

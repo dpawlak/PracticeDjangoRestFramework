@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<h1>Prescripition Detail View</h1>
+
+<p>Patient:{{prescriptions.patient}}</p>
+<p>Medication:{{prescriptions.medication}}</p>
+<p>Refills:{{prescriptions.refills}}</p>
+
+
+
+{% endblock %}
