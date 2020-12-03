@@ -18,3 +18,9 @@ class Prescriptions(models.Model):
 
     def __str__(self):
         return self.medication
+
+def refill_counter(request):
+    counter = Prescriptions.objects.filter(refills=refills).count() - 1
+    
+
+

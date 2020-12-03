@@ -8,7 +8,6 @@ urlpatterns = [
     path('post/', views.postview, name='post'),
     path('delete/<int:pk>/', views.delete, name='delete'),
     
-
     # Doctor Profile Urls
     path('doc', views.DoctorIndexView.as_view(), name='doctor_index'),
     path('doctor/<int:pk>/', views.DoctorDetailView.as_view(), name='doctor_detail'),
@@ -16,5 +15,4 @@ urlpatterns = [
     path('doctor/', views.doctorview, name='doctor'),
     path('doctor/delete/<int:pk>/', views.doctordelete, name='doctor_delete'),
     
-
 ]

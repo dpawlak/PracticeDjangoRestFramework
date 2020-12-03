@@ -7,7 +7,4 @@ urlpatterns = [
     path('prescriptions_form/', views.prescriptionsView, name='prescriptions_form'),
     path('prescription_edit/<int:pk>/', views.prescriptionEdit, name='prescription_edit'),
     path('<int:pk>/', views.PrescriptionDetailView.as_view(), name='prescription_detail'),
-
-
-
 ]

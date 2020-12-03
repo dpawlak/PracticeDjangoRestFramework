@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Count
 from django import template
- 
+
 # Third party imports 
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
@@ -16,7 +16,6 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import viewsets          
 from django.views.generic import ListView, DetailView
 from rest_framework.renderers import JSONRenderer
-from .filters import PostFilter
 
 # App imports
 from .serializers import PostSerializer, TagSerializer
@@ -65,6 +64,10 @@ def delete(request, pk, template_name='confirm_delete.html'):
         post.delete()
         return redirect('index')
     return render(request, template_name, {'object':post})
+
+
+
+
 
 
 #---------------------------------------#

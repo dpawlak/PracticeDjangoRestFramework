@@ -58,8 +58,9 @@ def prescriptionEdit(request, pk, template_name='prescription_edit.html'):
         return redirect('prescriptions')
     return render(request, template_name, {'form':form})
 
-
 #Prescription detail view 
 class PrescriptionDetailView(DetailView):
     model = Prescriptions
     template_name = 'prescription_detail.html'
+
+

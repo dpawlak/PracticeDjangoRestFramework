@@ -15,7 +15,7 @@ class Post(models.Model):
     SHIRT_SIZES = (
         ('A', 'Building A'),
         ('B', 'Building B'),
-        ('B', 'Building C'),
+        ('C', 'Building C'),
     )
 
     first_name = models.CharField(max_length=100)
