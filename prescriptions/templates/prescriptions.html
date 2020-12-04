@@ -1,50 +1,107 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
-<h1>Welcome to the prescriptions page</h1>
+<div class="container">
 
 
-<a href="{% url 'prescriptions_form' %}">
-    <button type="button" class="btn btn-success">
-      <span class="glyphicon glyphicon-plus"></span>
+
+  {# Prescriptions chart #}
+  <div id="container" style="width: 100%;">
+    <canvas id="prescriptions-chart" data-url="{% url 'prescriptions-chart' %}"></canvas>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+    $(function () {
+      var $prescriptionsChart = $("#prescriptions-chart");
+      $.ajax({
+        url: $prescriptionsChart.data("url"),
+        success: function (data) {
+          var ctx = $prescriptionsChart[0].getContext("2d");
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Refills',
+                backgroundColor: '#e3a438',
+                data: data.data
+              }]          
+            },
+            options: {
+              responsive: true,
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Prescriptions Total'
+              }
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
+{# Add prescription button #}
+  <a href="{% url 'prescriptions_form' %}">
+    <button type="button" class="btn btn-primary" id="post-btn">
+      Add Prescription
     </button>
   </a>
-  <hr/>
-{% for prescription in prescriptions_list%}
-    <p>Last Name: {{prescription.patient}}</p>
-    <p>Medication: {{prescription.medication}}</p>
-    <p>Refills: {{prescription.refills}}</p>
-   
 
-    {# prescription Edit Button #}
-    <div>
-      <a href="{% url 'prescription_edit' prescription.pk %}">
-        <button type="button" class="btn btn-info">
-          <span class="glyphicon glyphicon-pencil"></span>
-        </button>
-      </a>
-    </div>
-
-    {# Post Detail Button #}
-      <div>
-        <a href="{% url 'prescription_detail' prescription.pk %}">
-          <button type="button" class="btn btn-info">
-            <span class="glyphicon glyphicon-open"></span>
-          </button>
-        </a>
+  <div class="container">
+    <div class="row">
+      <div class="cold-md">
+        <div class="card card-body">
+          <table class="table">
+            <tr>
+              <th>Last Name</th>
+              <th>Medication</th>
+              <th>Refills</th>
+              <th>Edit</th>
+              <th>Detail</th>
+            </tr>
+            {% for prescription in prescriptions_list%}
+              <tr>
+                <td>{{prescription.patient}}</td>
+                <td>{{prescription.medication}}</td>
+                <td>{{prescription.refills}}</td>
+                <td>
+{# prescription Edit Button #}
+                  <a href="{% url 'prescription_edit' prescription.pk %}">
+                    <button type="button" class="btn btn-info">
+                      <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                  </a>
+                </td>
+                <td>
+{# Post Detail Button #}                
+                  <a href="{% url 'prescription_detail' prescription.pk %}">
+                    <button type="button" class="btn btn-info">
+                      <span class="glyphicon glyphicon-open"></span>
+                    </button>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+        </div>
       </div>
+    </div>
+  </div>
+
+  
 
 
 
-
-
- <hr/>
-
-
-
-{% endfor %}
-
- 
-
+</div>
 {% endblock %}

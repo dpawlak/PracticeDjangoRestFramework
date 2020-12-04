@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.db.models import Count
+from django.db.models import Count, Sum
 from django import template
 
 # Third party imports 
@@ -24,13 +24,13 @@ from api_app.models import  Post
 from .forms import PrescriptionsForm
 from .serializers import PrescriptionsSerializer
 
+#Prescription Index View
 class PrescriptionsView(ListView, APIView):
     template_name='prescriptions.html'
     context_object_name = 'prescriptions_list'
     
     def get_queryset(self):
         return Prescriptions.objects.all()
-
 
 #Prescription detail view 
 class PrescriptionDetailView(DetailView):
@@ -47,8 +47,6 @@ def prescriptionsView(request):
  form = PrescriptionsForm()
  return render(request,'prescription_form.html',{'form': form})
 
-
-
 #Edit a prescription
 def prescriptionEdit(request, pk, template_name='prescription_edit.html'):
     prescription = get_object_or_404(Prescriptions, pk=pk)
@@ -63,4 +61,18 @@ class PrescriptionDetailView(DetailView):
     model = Prescriptions
     template_name = 'prescription_detail.html'
 
+#Prescriptions Bar Chart
+def prescriptions_chart(request):
+    labels = []
+    data = []
+
+    queryset = Prescriptions.objects.values('medication').annotate(prescriptions_refills=Sum('refills')).order_by('-prescriptions_refills')
+    for entry in queryset:
+        labels.append(entry['medication'])
+        data.append(entry['prescriptions_refills'])
+
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data
+    })
 
