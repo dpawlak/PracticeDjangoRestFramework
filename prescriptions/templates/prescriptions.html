@@ -6,7 +6,7 @@
 <div class="container">
 
 
-
+  <h1>Prescriptions</h1>
   {# Prescriptions chart #}
   <div id="container" style="width: 100%;">
     <canvas id="prescriptions-chart" data-url="{% url 'prescriptions-chart' %}"></canvas>
@@ -35,9 +35,19 @@
               legend: {
                 position: 'top',
               },
+
+              scales: {
+                yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                max: 20
+                            }
+                        }]
+              },
               title: {
                 display: true,
-                text: 'Prescriptions Total'
               }
             }
           });
@@ -45,11 +55,6 @@
       });
     });
   </script>
-
-
-
-
-
 
 {# Add prescription button #}
   <a href="{% url 'prescriptions_form' %}">
@@ -68,7 +73,7 @@
               <th>Medication</th>
               <th>Refills</th>
               <th>Edit</th>
-              <th>Detail</th>
+              <th>Delete</th>
             </tr>
             {% for prescription in prescriptions_list%}
               <tr>
@@ -85,11 +90,14 @@
                 </td>
                 <td>
 {# Post Detail Button #}                
-                  <a href="{% url 'prescription_detail' prescription.pk %}">
-                    <button type="button" class="btn btn-info">
-                      <span class="glyphicon glyphicon-open"></span>
+                  <a href="{% url 'delete_prescription' prescription.pk %}">
+                    <button type="button" class="btn btn-danger">
+                      <span class="glyphicon glyphicon-trash"></span>
                     </button>
                   </a>
+
+
+
                 </td>
               </tr>
             {% endfor %}

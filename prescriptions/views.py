@@ -76,3 +76,13 @@ def prescriptions_chart(request):
         'data': data
     })
 
+
+#Delete prescription
+def delete_prescription(request, pk, template_name='prescription_delete.html'):
+    post= get_object_or_404(Prescriptions, pk=pk)    
+    if request.method=='POST':
+        post.delete()
+        return redirect('prescriptions')
+    return render(request, template_name, {'object':post})
+
+

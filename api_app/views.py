@@ -22,8 +22,6 @@ from .serializers import PostSerializer, TagSerializer
 from .models import Post, DoctorProfile, Tag
 from .forms import PostForm, DoctorProfileForm
 
-
-
 #home view for posts. Posts are displayed in a list
 class IndexView(ListView, APIView):
     template_name='index.html'
@@ -31,7 +29,6 @@ class IndexView(ListView, APIView):
     
     def get_queryset(self):
         return Post.objects.all()
-
 
 #Detail view (view post detail)
 class PostDetailView(DetailView):
@@ -65,11 +62,6 @@ def delete(request, pk, template_name='confirm_delete.html'):
         return redirect('index')
     return render(request, template_name, {'object':post})
 
-
-
-
-
-
 #---------------------------------------#
 # -------Doctor Profile Views-----------#
 #---------------------------------------#
@@ -91,7 +83,6 @@ class DoctorDetailView(DetailView):
 
 
 #New Doctor view (Create new post)
-
 def doctorview(request):
  if request.method == 'POST':
   form = DoctorProfileForm(request.POST)
@@ -119,13 +110,6 @@ def doctordelete(request, pk, template_name='doctor_confirm_delete.html'):
         post.delete()
         return redirect('index')
     return render(request, template_name, {'object':doctor})
-
-
-
-
-
-
-
 
 # --------------------------------------------------- #
 

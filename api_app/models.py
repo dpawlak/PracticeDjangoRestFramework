@@ -10,6 +10,22 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+class DoctorProfile(models.Model):
+
+    FOCUS = (
+        ('Counseling', 'Counseling'),
+        ('Disease', 'Disease'),
+        ('Surgeon', 'Surgeon'),
+        ('Data Analysis', 'Data Analysis'),
+    )
+
+    doctor = models.CharField(max_length=50)
+    doctor_bio = models.TextField(max_length=500)
+    focus = models.CharField(max_length=25, choices=FOCUS)
+    
+    def __str__(self):
+        return self.doctor
+
 class Post(models.Model):
 
     SHIRT_SIZES = (
@@ -21,7 +37,7 @@ class Post(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, null=True, blank=True)
-    doctor = models.CharField(max_length=25)
+    doctor = models.ManyToManyField(DoctorProfile, null=True)
     timestamp = models.DateTimeField(auto_now=True)
     building = models.CharField(max_length=1, choices=SHIRT_SIZES)
     tags = models.ManyToManyField(Tag)
@@ -29,14 +45,6 @@ class Post(models.Model):
     def __str__(self):
         return self.last_name
 
-class DoctorProfile(models.Model):
 
-    customer = models.ForeignKey(Post, null=True, on_delete=models.SET_NULL)
-    doctor_first_name = models.CharField(max_length=100)
-    doctor_last_name = models.CharField(max_length=100)
-    doctor_summary = models.TextField(max_length=500)
-    
-    def __str__(self):
-        return self.doctor_last_name
 
             

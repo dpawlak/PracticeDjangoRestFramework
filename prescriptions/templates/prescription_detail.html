@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<h1>Prescripition Detail View</h1>
-
-<p>Patient:{{prescriptions.patient}}</p>
-<p>Medication:{{prescriptions.medication}}</p>
-<p>Refills:{{prescriptions.refills}}</p>
-
-
-
+<div class="container">
+    <h1>Prescripition Detail View</h1>
+    <p>Patient:{{prescriptions.patient}}</p>
+    <p>Medication:{{prescriptions.medication}}</p>
+    <p>Refills:{{prescriptions.refills}}</p>
+</div>
 {% endblock %}

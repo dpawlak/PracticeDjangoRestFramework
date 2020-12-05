@@ -1,9 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<div class="container">
+  {# Add doctor #}
+  <a href="{% url 'doctor' %}">
+    <button type="button" class="btn btn-primary" id="post-btn">
+      Add Doctor
+    </button>
+  </a>
 
-  {% for doctor in doctor_list %}
-    <p>First: {{ doctor.doctor_first_name}}</p>
-    <p>Last: {{doctor.doctor_last_name}}</p>
-    <p>Description: {{doctor.doctor_summary}}</p>
-    {% endfor %}
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <div class="card card-body">
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th>Focus</th>
+            <th>Bio</th>
+          </tr>
+          {% for doctor in doctor_list %}
+          <tr>
+            <td>{{ doctor.doctor}}</td>
+            <td>{{doctor.focus}}</td>
+            <td>{{doctor.doctor_bio}}</td>
+          {% endfor %}
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+  
+    
+
+
+
+
+
+</div>    
 {% endblock %}
