@@ -22,7 +22,7 @@ from .serializers import PostSerializer, TagSerializer
 from .models import Post, DoctorProfile, Tag
 from .forms import PostForm, DoctorProfileForm
 
-#home view for posts. Posts are displayed in a list
+# Home view for posts. Posts are displayed in a list
 class IndexView(ListView, APIView):
     template_name='index.html'
     context_object_name = 'post_list'
@@ -30,12 +30,12 @@ class IndexView(ListView, APIView):
     def get_queryset(self):
         return Post.objects.all()
 
-#Detail view (view post detail)
+# Detail view (view post detail)
 class PostDetailView(DetailView):
     model=Post
     template_name = 'post-detail.html'
 
-#New post view (Create new post)
+# New post view (Create new post)
 def postview(request):
  if request.method == 'POST':
   form = PostForm(request.POST)
@@ -45,7 +45,7 @@ def postview(request):
  form = PostForm()
  return render(request,'post.html',{'form': form})
 
-#Edit a post
+# Edit a post
 def edit(request, pk, template_name='edit.html'):
     post= get_object_or_404(Post, pk=pk)
     form = PostForm(request.POST or None, instance=post)
@@ -54,7 +54,7 @@ def edit(request, pk, template_name='edit.html'):
         return redirect('index')
     return render(request, template_name, {'form':form})
 
-#Delete post
+# Delete post
 def delete(request, pk, template_name='confirm_delete.html'):
     post= get_object_or_404(Post, pk=pk)    
     if request.method=='POST':
@@ -74,68 +74,34 @@ class DoctorIndexView(ListView):
     def get_queryset(self):
         return DoctorProfile.objects.all()
     
-
 # Doctor Detail view (view doctor detail)
-
 class DoctorDetailView(DetailView):
  model=DoctorProfile
  template_name = 'doctor-detail.html'
 
-
-#New Doctor view (Create new post)
+# New Doctor view (Create new post)
 def doctorview(request):
  if request.method == 'POST':
   form = DoctorProfileForm(request.POST)
   if form.is_valid():
    form.save()
-  return redirect('index')
+  return redirect('doctor_index')
  form = DoctorProfileForm()
  return render(request,'doctor.html',{'form': form})
 
-#Edit a Doctor
-
+# Edit a Doctor
 def doctoredit(request, pk, template_name='doctoredit.html'):
-    doctor= get_object_or_404(Doctor, pk=pk)
-    form = DoctorProfileForm(request.POST or None, instance=post)
+    doctor= get_object_or_404(DoctorProfile, pk=pk)
+    form = DoctorProfileForm(request.POST or None, instance=doctor)
     if form.is_valid():
         form.save()
-        return redirect('index')
+        return redirect('doctor_index')
     return render(request, template_name, {'form':form})
 
-#Delete post
-
+# Delete post
 def doctordelete(request, pk, template_name='doctor_confirm_delete.html'):
-    doctor= get_object_or_404(Doctor, pk=pk)    
+    doctor= get_object_or_404(DoctorProfile, pk=pk)    
     if request.method=='POST':
-        post.delete()
-        return redirect('index')
+        doctor.delete()
+        return redirect('doctor_index')
     return render(request, template_name, {'object':doctor})
-
-# --------------------------------------------------- #
-
-# Practice Views
-
-class TitleList(APIView):
-    renderer_classes = [TemplateHTMLRenderer]
-    template_name = 'post_titles.html'
-
-    def get(self, request):
-        queryset = Post.objects.all()
-        return Response({'posts': queryset})
-
-class PostListCreateView(generics.ListCreateAPIView):
-    serializer_class = PostSerializer
-    queryset = Post.objects.all()
-
-class RetrieveView(generics.RetrieveAPIView):
-    serializer_class = PostSerializer
-    queryset = Post.objects.all()
-
-class DestroyView(generics.DestroyAPIView):
-    serializer_class = PostSerializer
-    queryset = Post.objects.all()
-
-class RetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
- 
-    serializer_class = PostSerializer
-    queryset = Post.objects.all()
