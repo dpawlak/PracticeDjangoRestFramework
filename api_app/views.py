@@ -22,6 +22,10 @@ from .serializers import PostSerializer, TagSerializer
 from .models import Post, DoctorProfile, Tag
 from .forms import PostForm, DoctorProfileForm
 
+#---------------------------------------#
+# ----------Appointment Views-----------#
+#---------------------------------------#
+
 # Home view for posts. Posts are displayed in a list
 class IndexView(ListView, APIView):
     template_name='index.html'
@@ -74,12 +78,12 @@ class DoctorIndexView(ListView):
     def get_queryset(self):
         return DoctorProfile.objects.all()
     
-# Doctor Detail view (view doctor detail)
+# Doctor Detail
 class DoctorDetailView(DetailView):
  model=DoctorProfile
  template_name = 'doctor-detail.html'
 
-# New Doctor view (Create new post)
+# Create New Doctor
 def doctorview(request):
  if request.method == 'POST':
   form = DoctorProfileForm(request.POST)
@@ -98,10 +102,15 @@ def doctoredit(request, pk, template_name='doctoredit.html'):
         return redirect('doctor_index')
     return render(request, template_name, {'form':form})
 
-# Delete post
+# Delete Doctor
 def doctordelete(request, pk, template_name='doctor_confirm_delete.html'):
     doctor= get_object_or_404(DoctorProfile, pk=pk)    
     if request.method=='POST':
         doctor.delete()
         return redirect('doctor_index')
     return render(request, template_name, {'object':doctor})
+
+# Doctor/Team Pie Chart
+def pie_chart(request):
+    labels = []
+    data = []

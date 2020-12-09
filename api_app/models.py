@@ -6,7 +6,6 @@ User = get_user_model()
 class Tag(models.Model):
     name = models.CharField(max_length=200)
 
-
     def __str__(self):
         return self.name
 
@@ -22,13 +21,14 @@ class DoctorProfile(models.Model):
     doctor = models.CharField(max_length=50)
     doctor_bio = models.TextField(max_length=500)
     focus = models.CharField(max_length=25, choices=FOCUS)
+    experience = models.IntegerField()
     
     def __str__(self):
         return self.doctor
 
 class Post(models.Model):
 
-    SHIRT_SIZES = (
+    BUILDINGS = (
         ('A', 'Building A'),
         ('B', 'Building B'),
         ('C', 'Building C'),
@@ -37,9 +37,9 @@ class Post(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     description = models.TextField(max_length=500, null=True, blank=True)
-    doctor = models.ManyToManyField(DoctorProfile, null=True)
+    doctor = models.ManyToManyField(DoctorProfile)
     timestamp = models.DateTimeField(auto_now=True)
-    building = models.CharField(max_length=1, choices=SHIRT_SIZES)
+    building = models.CharField(max_length=1, choices=BUILDINGS)
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
