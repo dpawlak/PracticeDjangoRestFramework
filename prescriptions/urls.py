@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import PrescriptionsView, prescriptionsView, PrescriptionDetailView, prescriptions_chart
 from prescriptions import views
-
+ 
 urlpatterns = [
     path('', views.PrescriptionsView.as_view(), name='prescriptions'),
     path('prescriptions_form/', views.prescriptionsView, name='prescriptions_form'),

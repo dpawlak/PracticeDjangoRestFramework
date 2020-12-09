@@ -86,3 +86,4 @@ def delete_prescription(request, pk, template_name='prescription_delete.html'):
     return render(request, template_name, {'object':post})
 
 
+   

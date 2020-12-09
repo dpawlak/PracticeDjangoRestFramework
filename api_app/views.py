@@ -26,7 +26,7 @@ from .forms import PostForm, DoctorProfileForm
 # ----------Appointment Views-----------#
 #---------------------------------------#
 
-# Home view for posts. Posts are displayed in a list
+# Appointment Index 
 class IndexView(ListView, APIView):
     template_name='index.html'
     context_object_name = 'post_list'
@@ -34,12 +34,12 @@ class IndexView(ListView, APIView):
     def get_queryset(self):
         return Post.objects.all()
 
-# Detail view (view post detail)
+# Appointment Detail 
 class PostDetailView(DetailView):
     model=Post
     template_name = 'post-detail.html'
 
-# New post view (Create new post)
+# New Appointment 
 def postview(request):
  if request.method == 'POST':
   form = PostForm(request.POST)
@@ -70,14 +70,15 @@ def delete(request, pk, template_name='confirm_delete.html'):
 # -------Doctor Profile Views-----------#
 #---------------------------------------#
 
-# Doctor List View
+# Doctor List 
 class DoctorIndexView(ListView):
     template_name='doctor_index.html'
     context_object_name = 'doctor_list'
 
     def get_queryset(self):
         return DoctorProfile.objects.all()
-    
+ 
+
 # Doctor Detail
 class DoctorDetailView(DetailView):
  model=DoctorProfile
@@ -114,3 +115,13 @@ def doctordelete(request, pk, template_name='doctor_confirm_delete.html'):
 def pie_chart(request):
     labels = []
     data = []
+
+    queryset = DoctorProfile.objects.order_by('-experience')
+    for dr in queryset:
+        labels.append(dr.doctor)
+        data.append(dr.experience)
+
+    return JsonResponse(data={
+        'labels': labels,
+        "data": data,
+    })
