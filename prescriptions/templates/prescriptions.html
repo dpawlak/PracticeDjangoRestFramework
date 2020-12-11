@@ -5,9 +5,7 @@
 
 <div class="container">
 
-
-  <h1>Prescriptions</h1>
-  {# Prescriptions chart #}
+{# Prescriptions chart #}
   <div id="container" style="width: 100%;">
     <canvas id="prescriptions-chart" data-url="{% url 'prescriptions-chart' %}"></canvas>
   </div>
@@ -26,7 +24,7 @@
               labels: data.labels,
               datasets: [{
                 label: 'Refills',
-                backgroundColor: '#e3a438',
+                backgroundColor: '#264653',
                 data: data.data
               }]          
             },

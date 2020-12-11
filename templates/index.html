@@ -1,75 +1,76 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<body>
-<div class='container'>
-  
-<h1>Appointments</h1>
-{# Show number of appointments left #}
-<div id="apt-row" class='row'>
+<head>
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
 
-  <div class="col-md-4">
-    <div id="apt-box" class="card">
-      <div id="apt-header" class='card-header'>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body> 
+<div class='container'>
+
+{# Show number of appointments left #}
+<div id="apt-row" class='container'>
+
+  <div class='smr'>
+    <div id="apt-box">
+      <div id="apt-header">
         <p>Total</p>
       </div>
-      <div id="apt-count" class="card-body">
+      <div id="apt-count">
         <p>{{post_list.count}}</p>
       </div>
     </div>
-  </div>
-
-  <div class="col-md-4">
-    <div id="apt-box" class="card">
-      <div id="apt-header" class='card-header'>
-        <p>Traumas</p>
+  
+    <div id="apt-box">
+      <div id="apt-header">
+        <p>Trauma</p>
       </div>
-      <div id="apt-count" class="card-body">
+      <div id="apt-count">
         <p>{{trauma_count}}</p>
       </div>
     </div>
-  </div>
+  
 
-  <div class="col-md-4">
-    <div id="apt-box" class="card">
-      <div id="apt-header" class='card-header'>
-        <p>Pediatrics</p>
+  
+    <div id="apt-box">
+      <div id="apt-header">
+        <p>Pediatric</p>
       </div>
-      <div id="apt-count" class="card-body">
+      <div id="apt-count">
         <p>{{pediatrics_count}}</p>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div id="apt-box" class="card">
-      <div id="apt-header" class='card-header'>
-        <p>Optometries</p>
+  <div class='smr'>
+    <div id="apt-box">
+      <div id="apt-header">
+        <p>Optometry</p>
       </div>
-      <div id="apt-count" class="card-body">
+      <div id="apt-count">
         <p>{{optometry_count}}</p>
       </div>
     </div>
-  </div>
+  
 
-  <div class="col-md-4">
-    <div id="apt-box" class="card">
-      <div id="apt-header" class='card-header'>
-        <p>Nuerologies</p>
+  
+    <div id="apt-box">
+      <div id="apt-header">
+        <p>Neurology</p>
       </div>
-      <div id="apt-count" class="card-body">
+      <div id="apt-count">
         <p>{{nuerology_count}}</p>
       </div>
     </div>
-  </div>
+  
 
-  <div class="col-md-4">
-    <div id="apt-box" class="card">
-      <div id="apt-header" class='card-header'>
-        <p>Psychiatrics</p>
+  
+    <div id="apt-box">
+      <div id="apt-header">
+        <p>Psychiatric</p>
       </div>
-      <div id="apt-count" class="card-body">
+      <div id="apt-count">
         <p>{{psychiatry_count}}</p>
       </div>
     </div>
@@ -139,9 +140,7 @@
     </div>
   </div>
 </div>
-</div>
-</div>
-</div>
+
 <script type="text/javascript" src="../static/js/index-page.js"></script>
 </body>
 
