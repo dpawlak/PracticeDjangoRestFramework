@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
 <div class="container">
@@ -24,7 +25,7 @@
               labels: data.labels,
               datasets: [{
                 label: 'Refills',
-                backgroundColor: '#264653',
+                backgroundColor: '#f4a261',
                 data: data.data
               }]          
             },

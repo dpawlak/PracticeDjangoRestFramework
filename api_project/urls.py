@@ -10,6 +10,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api_app.urls')),
     path('prescriptions/', include('prescriptions.urls')),
-    path('api/token/', obtain_auth_token, name='obtain-token'),
-
 ]

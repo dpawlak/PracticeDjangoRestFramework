@@ -54,7 +54,7 @@
             <th>Name</th>
             <th>Focus</th>
             <th>Experience (yr)</th>
-            <th>Bio</th>
+            <th id='nav-hide'>Bio</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -63,7 +63,7 @@
             <td>{{ doctor.doctor}}</td>
             <td>{{doctor.focus}}</td>
             <td>{{doctor.experience}}</td>
-            <td>{{doctor.doctor_bio}}</td>
+            <td id='nav-hide'>{{doctor.doctor_bio}}</td>
             <td>
               <a href="{% url 'doctor_edit' doctor.pk %}">
                 <button type="button" class="btn btn-info">

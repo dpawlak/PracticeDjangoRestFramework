@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <head>
   <meta content="width=device-width, initial-scale=1" name="viewport" />
-
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+
 <body> 
-<div class='container'>
 
 {# Show number of appointments left #}
 <div id="apt-row" class='container'>
-
   <div class='smr'>
     <div id="apt-box">
       <div id="apt-header">
@@ -30,9 +29,7 @@
         <p>{{trauma_count}}</p>
       </div>
     </div>
-  
-
-  
+   
     <div id="apt-box">
       <div id="apt-header">
         <p>Pediatric</p>
@@ -53,8 +50,6 @@
       </div>
     </div>
   
-
-  
     <div id="apt-box">
       <div id="apt-header">
         <p>Neurology</p>
@@ -63,8 +58,6 @@
         <p>{{nuerology_count}}</p>
       </div>
     </div>
-  
-
   
     <div id="apt-box">
       <div id="apt-header">
@@ -75,7 +68,7 @@
       </div>
     </div>
   </div>
-</div>
+
 
 {# Add post #}
   <a href="{% url 'post' %}">
@@ -84,7 +77,8 @@
     </button>
   </a>
 
-<div class="container">
+
+
 <div class="row">
   <div class="col-md">
     <div class="card card-body">
@@ -93,8 +87,8 @@
           <th>Last Name</th>
           <th>First Name</th>
           <th>Doctor</th>
-          <th>Department</th>
-          <th>Building</th>
+          <th id='nav-hide'>Department</th>
+          <th id='nav-hide'>Building</th>
           <th>Description</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -108,12 +102,12 @@
                 {{doc}}
               {% endfor %}
             </td>
-            <td>
+            <td id='nav-hide'>
               {% for tag in post.tags.all %}
                 {{tag}}
               {% endfor %}
             </td>
-            <td>{{post.building}}</td>
+            <td id='nav-hide'>{{post.building}}</td>
             <td><a href="{% url 'detail' post.pk %}">Description</a></td>
             <td>
               <div>
@@ -139,9 +133,6 @@
       </table>
     </div>
   </div>
-</div>
-
-<script type="text/javascript" src="../static/js/index-page.js"></script>
 </body>
 
 {% endblock %}
