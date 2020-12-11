@@ -16,7 +16,7 @@ SECRET_KEY = 'b($^tq9o3#7(+c1u0+t647pez#^szgqf15m2f!9dpt*c#(o(m%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://peaceful-garden-72540.herokuapp.com/"]
+ALLOWED_HOSTS = ["peaceful-garden-72540.herokuapp.com"]
 
 
 # Application definition
