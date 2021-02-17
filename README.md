@@ -1,4 +1,5 @@
-# PracticeDjangoRestFramework
+REST API
+
 DRF app to manage appointments, prescriptions, and doctors.
 
 Uses Chart.js and queries to visualize model data with pie and bar charts that update as the client
